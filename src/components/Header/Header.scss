@@ -1,0 +1,23 @@
+.container-fluid {
+  height: 50%;
+  padding-bottom: 50px;
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+
+  .carousel {
+    width: 50%;
+
+    &-indicators {
+      display: none;
+    }
+
+    &-control-prev {
+      display: none;
+    }
+
+    &-control-next {
+      display: none;
+    }
+  }
+}
