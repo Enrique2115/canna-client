@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import ListPlaces from "./components/ListPlaces/ListPlaces";
-import Time from "./components/Time/Time";
+import Titlevoracion from "./components/titlevotacion/titlecoment"
 import BasicLayout from "./layout/BasicLayout/BasicLayout";
-import "./assets/scss/global.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import { getListPlaces, getToken } from "./config/places";
+import "./assets/scss/global.scss";
 
 function App() {
   const [listPlaces, setlistPlaces] = useState();
@@ -23,7 +24,8 @@ function App() {
 
   return (
     <BasicLayout>
-      <Time />
+      <Titlevoracion/>
+      <div style={{height:"10px"}}/>
       <ListPlaces places={listPlaces} />
     </BasicLayout>
   );

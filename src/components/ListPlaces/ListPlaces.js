@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { map } from "lodash";
 import { CardGroup, Card, Button, Row } from "react-bootstrap";
-
-import { getaperturtime, putLike, veriLike } from "../../config/votation";
+import { putLike, veriLike } from "../../config/votation";
 
 export default function ListPlaces(props) {
   const { places } = props;
   const [fistVotar, setFistVotar] = useState();
 
   const token = localStorage.getItem("j@9JC4");
-
-  async function time() {
-    const response = await getaperturtime();
-  }
 
   return (
     <div className="list-places">
@@ -78,7 +73,10 @@ function Place(props) {
               Votar
             </Button>
           ) : (
-            <div>Ya votaste</div>
+            (places.id_negocio === fistVotar)?(<div style={{
+              color: "#66bb6a",
+              fontSize: "15px"
+            }}>Votaste Aqui</div>):(<div></div>)
           )}
           <small className="text-muted">Puntaje: {places.puntaje}</small>
         </Card.Footer>

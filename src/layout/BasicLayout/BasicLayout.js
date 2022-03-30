@@ -6,9 +6,9 @@ export default function BasicLayout(props) {
   const { children } = props;
 
   return (
-    <Container className="home" fluid>
+    <div className="home" >
       <Header />
-      <Container className="content">{children}</Container>
-    </Container>
+      <Container className="content" fluid>{children} </Container>
+    </div>
   );
 }

@@ -4,6 +4,7 @@
   padding-top: 20px;
   display: flex;
   justify-content: center;
+  align-items: center;
 
   .carousel {
     width: 50%;
@@ -20,4 +21,25 @@
       display: none;
     }
   }
+}
+.intagrambtn,
+.facebookbtn,
+.youtubebtn {
+  background-color: #4caf50;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.youtubebtn:hover {
+  background-color: #e53935;
+}
+
+.facebookbtn:hover {
+  background-color: #1976d2;
+}
+
+.intagrambtn:hover {
+  background-image: linear-gradient(0deg, red, blue);
 }
