@@ -1,6 +1,18 @@
 .home {
-  background-color: #f9fffa;
+  background-color: white;
   padding-bottom: 20px;
+  position: relative;
+}
+
+.home > .floatbutton {
+  display: flex;
+  padding-right: 20px;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+  position: sticky;
+  bottom: 60px;
+  z-index: 4;
 }
 
 .container {

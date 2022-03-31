@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { map } from "lodash";
 import { CardGroup, Card, Button, Row } from "react-bootstrap";
 import { putLike, veriLike } from "../../config/votation";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export default function ListPlaces(props) {
-  const { places } = props;
+  const { places,callback } = props;
   const [fistVotar, setFistVotar] = useState();
 
   const token = localStorage.getItem("j@9JC4");
@@ -19,6 +20,7 @@ export default function ListPlaces(props) {
             setFistVotar={setFistVotar}
             fistVotar={fistVotar}
             token={token}
+            callback = {callback}
           />
         ))}
       </Row>
@@ -27,7 +29,7 @@ export default function ListPlaces(props) {
 }
 
 function Place(props) {
-  const { places, setFistVotar, fistVotar, token } = props;
+  const { places, setFistVotar, fistVotar, token, callback } = props;
 
   async function validar() {
     const response = await veriLike();
@@ -48,7 +50,7 @@ function Place(props) {
   const votar = async () => {
     await validar();
     if (fistVotar === 0) {
-      const response = await putLike(places.id_negocio);
+      await putLike(places.id_negocio);
       await validar();
       console.log("votaste");
     }
@@ -58,7 +60,10 @@ function Place(props) {
   return (
     <CardGroup>
       <Card>
-        <Card.Img variant="top" src={places.url} />
+        <div className="iamgenconteninfo">
+          <Card.Img variant="top" src={places.url} />
+          <div className="infopoint"><FavoriteIcon/> {places.puntaje}</div>
+        </div>
         <Card.Body>
           <Card.Title>{places.nombre}</Card.Title>
           <Card.Text>{places.descripccion}</Card.Text>
@@ -67,6 +72,7 @@ function Place(props) {
           {fistVotar === 0 ? (
             <Button
               onClick={() => {
+                callback();
                 votar();
               }}
             >
@@ -78,7 +84,7 @@ function Place(props) {
               fontSize: "15px"
             }}>Votaste Aqui</div>):(<div></div>)
           )}
-          <small className="text-muted">Puntaje: {places.puntaje}</small>
+          <small className="text-muted"></small>
         </Card.Footer>
       </Card>
     </CardGroup>

@@ -3,15 +3,17 @@ import React from "react";
 import { Carousel } from "react-bootstrap";
 import useWindowDimensions from "../../config/useWindowDimensions";
 import Time from "../Time/Time";
+import Buttonredes from  "./redesbottons"
 
 export default function Header(props) {
 
   const ImageLogo = () => {
     const { height, width } = useWindowDimensions();
+    let sizeimage = (width < 500)?134:width/4;
     return (
       <img
           style={{
-            width:`${width/4}px`,
+            width:`${sizeimage}px`,
             height: "auto"
           }}
           src={"https://xn--lacaa-rta.pe/wp-content/uploads/2021/07/flatnews-logo1.png"}
@@ -23,51 +25,24 @@ export default function Header(props) {
 
   const Infocontac = () => {
     const { height, width } = useWindowDimensions();
-    let conten = (width < 500)?width/5:150; // contenedor de info
-    let supesconte = (width < 500)?width/3:width/4;
+    let conten = (width < 500)?300:150; // contenedor de info
     let sizeicon = (width < 500)? 12:20;
-    console.log(supesconte/6)
-    return (
-        <div style={{
-          height:"30px",
-          width: `${conten}px`,
-          display: "flex",
-          flexDirection:"row",
-          justifyContent: "left",
-          alignItems:"center"
-
-        }}>
-          <div 
-          className="facebookbtn"
-          style={{
-            height:`${supesconte/6}px`,
-            width: `${supesconte/6}px`,
-            
-          }}>
-            <FacebookOutlined style={{fontSize:`${sizeicon}px`,color:"white"}} twoToneColor="#ffffff" />
-          </div>
-          
-          <div style={{width:`4px`}}/>
-          
-          <div 
-          className="intagrambtn"
-          style={{
-            height:`${supesconte/6}px`,
-            width: `${supesconte/6}px`,
-          }}>
-            <InstagramOutlined style={{fontSize:`${sizeicon}px`,color:"white"}} twoToneColor="#ffffff" />
-          </div>
-          <div style={{width:`4px`}}/>
-          <div 
-          className="youtubebtn"
-          style={{
-            height:`${supesconte/6}px`,
-            width: `${supesconte/6}px`,
-          }}>
-            <YoutubeOutlined style={{fontSize:`${sizeicon}px`,color:"white"}} twoToneColor="#ffffff" />
-          </div>
-        </div>
+    let contentdiv = <></>
+    if ((width > 500)) contentdiv = (
+      <div style={{
+        height:"30px",
+        width: `${conten}px`,
+        display: "flex",
+        flexDirection:"row",
+        justifyContent: "left",
+        alignItems:"center"
+      }}>
+        <Buttonredes classname={"facebookbtn"} Icon={FacebookOutlined} size = {sizeicon} redirection={"https://www.facebook.com/LaCa%C3%B1ape-Noticias-del-Valle-Chicama-101515225490691"} />
+        <Buttonredes classname={"intagrambtn"} Icon={InstagramOutlined} size = {sizeicon} redirection={"https://www.instagram.com/noticiasdelvallechicama/"} />
+        <Buttonredes classname={"youtubebtn"} Icon={YoutubeOutlined} size = {sizeicon} redirection={"https://www.youtube.com/channel/UCwLBk00dCxLQuR32Kh3sS2w"} />
+      </div>
     );
+    return contentdiv;
   
   }
   
@@ -81,7 +56,7 @@ export default function Header(props) {
     }}>
         <Infocontac/>
         <ImageLogo/>
-        <Time />
+        <Time/>
     </div>
   );
 }

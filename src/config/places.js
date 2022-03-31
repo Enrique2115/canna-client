@@ -23,6 +23,7 @@ export async function getListPlaces() {
       },
     };
 
+    console.log(await getToken())
     const response = await axios.get(url, config);
     return response.data;
 
@@ -43,7 +44,7 @@ export async function getToken() {
     const response = await axios.get(url);
     const asd = response.data.token;
     localStorage.setItem(token, asd);
-    return response.data;
+    return localStorage.getItem(token);
 
   } catch (error) {
     console.log(error);

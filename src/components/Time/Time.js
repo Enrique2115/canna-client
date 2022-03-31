@@ -62,7 +62,7 @@ export default function Time() {
     tiempotrascurrido = tiempotrascurrido - minutes * msecPerMinute;
 
     var seconds = Math.floor(tiempotrascurrido / 1000);
-    console.log(days)
+    //console.log(days)
     //console.log(parseInt(hours/24))
     gettimetranscurre(new Date(0,0,days,hours,minutes,seconds,0));
     // actualizar el porcentaje

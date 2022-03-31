@@ -3,9 +3,35 @@
   padding-right: 15px;
 }
 
-.card-img-top {
+.iamgenconteninfo {
+  position: relative;
+}
+
+.iamgenconteninfo > .card-img-top {
   width: 100%;
   height: 250px;
+  max-width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.iamgenconteninfo > .infopoint {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: auto;
+  height: 25px;
+  z-index: 2;
+  background: white;
+  border-radius: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(76, 175, 80);
+  color: rgb(76, 175, 80);
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
 }
 
 .card-footer {
@@ -17,6 +43,11 @@
 .card {
   overflow: hidden;
   border-radius: 20px;
+}
+
+.card:hover,
+.card:checked {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .btn-primary {
