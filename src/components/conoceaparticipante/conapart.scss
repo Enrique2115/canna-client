@@ -1,0 +1,37 @@
+.ant-modal-content{
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.ant-modal-header {
+    background: #189803;
+}
+
+.ant-modal-title {
+    color: white;
+}
+
+.ant-modal-close-x > .anticon {
+    color: white;
+}
+
+.bottonconoce{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 25px;
+    background: #189803;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.bottonconoce:hover{
+    border-width: 1px;
+    border-style: solid;
+    border-color: #189803;
+    background:  white;
+    color: #189803;
+}

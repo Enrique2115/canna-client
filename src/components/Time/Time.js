@@ -11,7 +11,6 @@ export default function Time() {
   });
   const [timetranscurre, gettimetranscurre] = useState(new Date())
   const [timeporcen, getporcen] = useState(0);
-  const [colorporcen, getcolorporcen] = useState("");
 
   function format_code_time(fechaactual) {
     return [
@@ -23,6 +22,8 @@ export default function Time() {
       0,
     ];
   }
+
+  //0000 00 00 00 00
 
   const aperture = (codetime) => {
     const datosapeturearray = format_code_time(codetime);
@@ -36,11 +37,32 @@ export default function Time() {
       datosapeturearray[5]
     );
     return apertura
-  } 
+  }
 
-  const tick = () => {
-    let now = new Date();
-    let apert = (timeaperture.code_time !== "000000000000")?aperture(timeaperture.code_time):new Date();
+  // se caulcula la diferencia entre dos tiempos y hace la trasformacion
+  const suma_hors = (time, hors)=>{
+
+    if (!(time instanceof Date)) {
+      throw TypeError("Las fechas no cumplen don tel timpo de dato DATE");
+    }
+
+    // calcular los milisegundos : 1000 mls x 60 s = 60000 mls = 1 min
+    var msecPerMinute = 1000 * 60;
+    var msecPerHour = msecPerMinute * 60;
+    // milisegundossegundos de diferencia
+    time.setTime(time.getTime() + (hors * msecPerHour));
+    return time;
+  }
+
+  // se caulcula la diferencia entre dos tiempos y hace la trasformacion
+  const timetrascurre = (timeactual, timeaperture)=>{
+
+    if (!(timeactual instanceof Date) || !(timeaperture instanceof Date)) {
+      throw TypeError("Las fechas no cumplen don tel timpo de dato DATE");
+    }
+
+    let now = timeactual;
+    let apert = timeaperture;
     // milisegundossegundos de diferencia
     let tiempotrascurrido = now.getTime() - apert.getTime();
     // extraer fecha, hora, minutos y dias trascurridos
@@ -62,17 +84,24 @@ export default function Time() {
     tiempotrascurrido = tiempotrascurrido - minutes * msecPerMinute;
 
     var seconds = Math.floor(tiempotrascurrido / 1000);
-    //console.log(days)
-    //console.log(parseInt(hours/24))
-    gettimetranscurre(new Date(0,0,days,hours,minutes,seconds,0));
-    // actualizar el porcentaje
-    let timeapert = parseInt(timeaperture.time_filter);
+
+    return {days,hours,minutes,seconds};
+  }
+
+  const tick = () => {
+    let now = new Date();
+    let apert = (timeaperture.code_time !== "000000000000")?aperture(timeaperture.code_time):new Date();
+    //const {days,hours,minutes,seconds} = timetrascurre(now,apert);
+    
+    
+    const limittime = suma_hors(apert,timeaperture.time_filter);
+    const {days,hours,minutes,seconds} = timetrascurre(limittime,now); // captura el tiempo faltante
+    const transcurrent = new Date(0,0,days,hours,minutes,seconds,0) // captura la fecha trascurrida
+    gettimetranscurre(transcurrent);
+    // capturamos las horas trascurridas
     let horastrascurridas = resta_dos_fechas_a_hora(aperture(timeaperture.code_time),new Date());
-    let porcentaje = (horastrascurridas * 100) / timeapert
     // este metodo se esta reciclando para uzar la hora trascurrida
     getporcen(horastrascurridas);
-    // actualiazar el color de las votaciones
-    getcolorporcen((porcentaje >= 100)? "#f44336": "#4caf50");
   }
 
   // HORAS TRASCURRIDAS
@@ -99,7 +128,7 @@ export default function Time() {
     (async ()=>{
       if(timeaperture.time_filter === 1){
         const time = await getaperturtime();
-        console.log(time)
+        //console.log(time)
         gettiemaperture(time);
       }
     })()

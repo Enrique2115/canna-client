@@ -3,7 +3,7 @@ import React from "react";
 export default function Iitleinfo (props){
     return (<div
         style={{
-            height: "150px",
+            height: "120px",
             width: "100%",
             display: "flex",
             flexDirection:"row",
