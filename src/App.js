@@ -8,7 +8,9 @@ import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import { getListPlaces, getToken } from "./config/places";
 import "./assets/scss/global.scss";
 import Agredecimiento from "./layout/agradecimiento/agredecimiento"
+import Cargando from "./layout/cargando/cargando"
 import Listcategori from "./components/ListCategoria/listcategoria"
+import Listabacia from "./layout/listbacia/listbacia"
 import Conoceaparticipante from "./components/conoceaparticipante/conaparti"
 import { getListcategori } from "./config/categori";
 
@@ -57,7 +59,11 @@ function App() {
         <div style={{height:"25px"}}/>
         <Listcategori list={listCategori} callback={actualizar_id_categori}/>
         <div style={{height:"5px"}}/>
-        <ListPlaces places={listhistoryPlaces} callback={actualizateinterface} />
+        {(Array.isArray(listhistoryPlaces))?
+              ((listhistoryPlaces.length !== 0)?
+                <ListPlaces places={listhistoryPlaces} callback={actualizateinterface} />:
+                <Listabacia/>):
+                <Cargando/>}
       </>:<Agredecimiento/>}
     </BasicLayout>
   );

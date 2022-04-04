@@ -55,12 +55,9 @@ export default function ListPlaces(props) {
 
   return (
     <>
-      <div style={{
-          width:"100%",
-          height: "30px",
-          textAlign: "center",
-          fontSize: "20px"
-      }}>Seleccione la categoria donde votara</div>
+      <div className="titlecatecg">
+        Seleccione la categoria donde votara
+      </div>
       <div className="contentlistchipprincipal">
           {/* <div className="subtitlecategori">Seleccione a categoria a consultar o votar:</div> */}
         <div ref={scrollref} id="listarchispt" onScroll={()=>{

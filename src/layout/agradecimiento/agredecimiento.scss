@@ -28,3 +28,18 @@
   height: auto;
   width: 80px;
 }
+
+@media (max-width: 500px) {
+
+  .titleagradec {
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 15px;
+    line-height: 15px;
+  }
+
+  .imageagrade {
+    width: 40px;
+  }
+  
+}

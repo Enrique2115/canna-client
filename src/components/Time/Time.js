@@ -155,16 +155,6 @@ export default function Time() {
   }
 
   return (
-    <div style={{
-      background: "white",
-      height:"35px",
-      width: "120px",
-      display: "flex",
-      justifyContent:"center",
-      alignItems:"center",
-      borderRadius: "15px",
-      fontSize: "18px"
-
-    }}>{(timeporcen >= timeaperture.time_filter) ? <div style={{color:"#e53935"}}>Cerrado</div> : actualizarestado(timetranscurre)}</div>
+    <div className="timestily">{(timeporcen >= timeaperture.time_filter) ? <div style={{color:"#e53935"}}>Cerrado</div> : actualizarestado(timetranscurre)}</div>
   );
 }
